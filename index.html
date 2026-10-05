@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CanteenGo - Đặt đồ ăn căn tin</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+        <div class="container header-content">
+
+            <a href="#" class="logo">
+                Canteen<span>Go</span>
+            </a>
+
+            <nav class="navbar">
+                <a href="#home">Trang chủ</a>
+                <a href="#menu">Thực đơn</a>
+                <a href="#orders">Đơn hàng</a>
+                <a href="#admin">Quản lý</a>
+            </nav>
+
+            <div class="header-right">
+                <button class="login-btn" onclick="login()">
+                    Đăng nhập
+                </button>
+
+                <button class="cart-btn" onclick="scrollToCart()">
+                    🛒 Giỏ hàng
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ================= TRANG CHỦ ================= -->
+
+    <main id="home">
+
+        <section class="hero">
+            <div class="container hero-content">
+
+                <div class="hero-text">
+                    <span class="section-label">CANTEEN ONLINE</span>
+
+                    <h1>
+                        Đặt món nhanh.<br>
+                        Ăn ngon mỗi ngày.
+                    </h1>
+
+                    <p>
+                        CanteenGo giúp sinh viên dễ dàng xem thực đơn,
+                        đặt món ăn và quản lý đơn hàng ngay trên điện thoại.
+                    </p>
+
+                    <a href="#menu" class="primary-btn">
+                        Xem thực đơn
+                    </a>
+                </div>
+
+                <div class="hero-image">
+                    <div class="hero-food-card">
+                        <span>🍱</span>
+                        <h3>Bữa ăn tiện lợi</h3>
+                        <p>Ngon - Nhanh - Tiết kiệm</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= DANH MỤC ================= -->
+
+        <section class="categories">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">DANH MỤC</span>
+                    <h2>Chọn món yêu thích</h2>
+                </div>
+
+                <div class="category-list">
+
+                    <button class="category-item" onclick="filterByCategory('')">
+                        <div class="category-icon">🍽️</div>
+                        <span>Tất cả</span>
+                    </button>
+
+                    <button class="category-item" onclick="filterByCategory('Cơm')">
+                        <div class="category-icon">🍚</div>
+                        <span>Cơm</span>
+                    </button>
+
+                    <button class="category-item" onclick="filterByCategory('Mì')">
+                        <div class="category-icon">🍜</div>
+                        <span>Mì</span>
+                    </button>
+
+                    <button class="category-item" onclick="filterByCategory('Bún')">
+                        <div class="category-icon">🥗</div>
+                        <span>Bún</span>
+                    </button>
+
+                    <button class="category-item" onclick="filterByCategory('Phở')">
+                        <div class="category-icon">🍲</div>
+                        <span>Phở</span>
+                    </button>
+
+                    <button class="category-item" onclick="filterByCategory('Bánh mì')">
+                        <div class="category-icon">🥖</div>
+                        <span>Bánh mì</span>
+                    </button>
+
+                    <button class="category-item" onclick="filterByCategory('Đồ uống')">
+                        <div class="category-icon">🥤</div>
+                        <span>Đồ uống</span>
+                    </button>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= THỰC ĐƠN ================= -->
+
+        <section class="menu-section" id="menu">
+
+            <div class="container">
+
+                <div class="menu-header">
+
+                    <div>
+                        <span class="section-label">OUR MENU</span>
+                        <h2>Thực đơn hôm nay</h2>
+                        <p>
+                            Những món ăn được phục vụ tại căn tin.
+                        </p>
+                    </div>
+
+                    <div class="menu-tools">
+
+                        <input
+                            type="text"
+                            id="search-input"
+                            placeholder="Tìm món ăn..."
+                        >
+
+                        <select id="category-filter">
+
+                            <option value="">
+                                Tất cả danh mục
+                            </option>
+
+                            <option value="Cơm">Cơm</option>
+                            <option value="Mì">Mì</option>
+                            <option value="Bún">Bún</option>
+                            <option value="Phở">Phở</option>
+                            <option value="Bánh mì">Bánh mì</option>
+                            <option value="Đồ uống">Đồ uống</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- JAVASCRIPT SẼ HIỂN THỊ MÓN ĂN TẠI ĐÂY -->
+
+                <div id="product-list" class="product-grid">
+
+                    <!-- Sản phẩm được tạo tự động bằng script.js -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GIỎ HÀNG ================= -->
+
+        <section class="cart-section" id="cart">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">YOUR CART</span>
+                    <h2>Giỏ hàng của bạn</h2>
+                </div>
+
+                <div class="cart-box">
+
+                    <div id="cart-list">
+
+                        <div class="empty-message">
+                            Giỏ hàng đang trống.
+                        </div>
+
+                    </div>
+
+                    <div class="cart-summary">
+
+                        <div class="summary-row">
+                            <span>Tạm tính</span>
+                            <strong id="cart-total">0 đ</strong>
+                        </div>
+
+                        <button
+                            class="primary-btn checkout-btn"
+                            onclick="checkout()"
+                        >
+                            Tiến hành đặt món
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ĐƠN HÀNG ================= -->
+
+        <section class="orders-section" id="orders">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">ORDER MANAGEMENT</span>
+                    <h2>Đơn hàng của tôi</h2>
+                </div>
+
+                <div class="orders-box">
+
+                    <div id="orders-list">
+
+                        <div class="empty-message">
+                            Chưa có đơn hàng nào.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUẢN LÝ ================= -->
+
+        <section class="admin-section" id="admin">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">ADMIN DEMO</span>
+                    <h2>Quản lý đơn hàng</h2>
+                </div>
+
+                <div class="admin-box">
+
+                    <div class="admin-stat">
+                        <span>Tổng số đơn hàng</span>
+                        <strong id="total-orders">0</strong>
+                    </div>
+
+                    <div class="admin-stat">
+                        <span>Đơn đang xử lý</span>
+                        <strong id="pending-orders">0</strong>
+                    </div>
+
+                    <div class="admin-stat">
+                        <span>Doanh thu</span>
+                        <strong id="total-revenue">0 đ</strong>
+                    </div>
+
+                </div>
+
+                <div class="admin-orders">
+
+                    <h3>Danh sách đơn hàng</h3>
+
+                    <div id="admin-order-list">
+                        <p class="empty-message">
+                            Chưa có dữ liệu đơn hàng.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div class="footer-logo">
+                Canteen<span>Go</span>
+            </div>
+
+            <p>
+                Hệ thống đặt đồ ăn căn tin dành cho sinh viên.
+            </p>
+
+            <div class="footer-info">
+                <span>© 2026 CanteenGo</span>
+                <span>Đồ án môn Phân tích và thiết kế hệ thống</span>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= MODAL ĐĂNG NHẬP ================= -->
+
+    <div id="login-modal" class="modal">
+
+        <div class="modal-content">
+
+            <button class="close-modal" onclick="closeLogin()">
+                ×
+            </button>
+
+            <h2>Đăng nhập</h2>
+
+            <p>
+                Đăng nhập để quản lý đơn hàng của bạn.
+            </p>
+
+            <input
+                type="text"
+                id="login-username"
+                placeholder="Tên đăng nhập"
+            >
+
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Mật khẩu"
+            >
+
+            <button class="primary-btn" onclick="submitLogin()">
+                Đăng nhập
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
